@@ -1,4 +1,4 @@
-export interface GeocodingResult {
+export type GeocodingResult = {
   name: string
   latitude: number
   longitude: number
@@ -6,11 +6,11 @@ export interface GeocodingResult {
   timezone: string
 }
 
-export interface GeocodingResponse {
+export type GeocodingResponse = {
   results?: GeocodingResult[]
 }
 
-export interface WeatherCurrent {
+export type WeatherCurrent = {
   temperature_2m: number
   relative_humidity_2m: number
   apparent_temperature: number
@@ -22,7 +22,7 @@ export interface WeatherCurrent {
   wind_direction_10m: number
 }
 
-export interface WeatherCurrentUnits {
+export type WeatherCurrentUnits = {
   temperature_2m: string
   relative_humidity_2m: string
   apparent_temperature: string
@@ -34,11 +34,11 @@ export interface WeatherCurrentUnits {
   wind_direction_10m: string
 }
 
-export interface WeatherResult {
+export type WeatherResult = {
   current: WeatherCurrent
   current_units: WeatherCurrentUnits
 }
 
 export type ForecastResponse = WeatherResult
 
-export interface CombinedWeatherData extends GeocodingResult, WeatherResult {}
+export type CombinedWeatherData = GeocodingResult & WeatherResult
