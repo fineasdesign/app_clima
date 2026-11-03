@@ -1,4 +1,5 @@
 import './style.css'
+import { searchWeather } from './services/openMeteo'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 
@@ -64,3 +65,74 @@ app.innerHTML = `
     </article>
   </main>
 `
+
+const searchForm = app.querySelector<HTMLFormElement>('#search-form')
+const cityInput = app.querySelector<HTMLInputElement>('#city-input')
+const searchButton = app.querySelector<HTMLButtonElement>('#search-button')
+const weatherCard = app.querySelector<HTMLElement>('.weather-card')
+const emptyState = app.querySelector<HTMLElement>('#empty-state')
+const loadingState = app.querySelector<HTMLElement>('#loading-state')
+const weatherResult = app.querySelector<HTMLElement>('#weather-result')
+
+if (
+  !searchForm ||
+  !cityInput ||
+  !searchButton ||
+  !weatherCard ||
+  !emptyState ||
+  !loadingState ||
+  !weatherResult
+) {
+  throw new Error('Elementos da interface não encontrados.')
+}
+
+type WeatherUiState = 'empty' | 'loading' | 'result'
+
+const resultContainers = weatherResult.querySelectorAll<HTMLElement>(
+  '#weather-temperature, #weather-location, #weather-date, #weather-day-night, #weather-condition, .metric-value',
+)
+
+const clearResult = () => {
+  resultContainers.forEach((container) => {
+    container.textContent = ''
+  })
+}
+
+const setUiState = (state: WeatherUiState) => {
+  const isEmpty = state === 'empty'
+  const isLoading = state === 'loading'
+  const isResult = state === 'result'
+
+  emptyState.hidden = !isEmpty
+  loadingState.hidden = !isLoading
+  weatherResult.hidden = !isResult
+  cityInput.disabled = isLoading
+  searchButton.disabled = isLoading
+  weatherCard.setAttribute('aria-busy', String(isLoading))
+
+  if (isEmpty || isLoading) {
+    clearResult()
+  }
+}
+
+setUiState('empty')
+
+searchForm.addEventListener('submit', async (event) => {
+  event.preventDefault()
+
+  const cityName = cityInput.value.trim()
+  if (!cityName) {
+    return
+  }
+
+  setUiState('loading')
+
+  const result = await searchWeather(cityName)
+
+  if (!result) {
+    setUiState('empty')
+    return
+  }
+
+  setUiState('result')
+})
