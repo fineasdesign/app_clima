@@ -376,20 +376,20 @@ O card mantém `max-width: 800px` e padding adequado em ambos os breakpoints.
 
 ## 6. Critérios de aceite
 
-- [ ] Campo de busca funciona com Enter e botão
-- [ ] Busca com campo vazio não dispara requisição
-- [ ] Loading visível durante as duas requisições
-- [ ] Cidade encontrada exibe todos os campos da sidebar e área principal
-- [ ] Cidade não encontrada retorna ao empty state
-- [ ] Falha no forecast retorna ao empty state
-- [ ] Weather code exibido em português
-- [ ] Dia/noite exibido com texto + ícone
-- [ ] Vento exibido com velocidade, graus e cardinal
-- [ ] Data formatada em português no fuso da cidade
-- [ ] Requisições passam exclusivamente pelo módulo `openMeteo.ts`
-- [ ] Layout responsivo: sidebar empilha em mobile
-- [ ] Fundo escuro, card branco arredondado, max-width 800px
-- [ ] Empty state presente no carregamento inicial
+- [x] Campo de busca funciona com Enter e botão
+- [x] Busca com campo vazio não dispara requisição
+- [x] Loading visível durante as duas requisições
+- [x] Cidade encontrada exibe todos os campos da sidebar e área principal
+- [x] Cidade não encontrada retorna ao empty state
+- [x] Falha no forecast retorna ao empty state
+- [x] Weather code exibido em português
+- [x] Dia/noite exibido com texto + ícone
+- [x] Vento exibido com velocidade, graus e cardinal
+- [x] Data formatada em português no fuso da cidade
+- [x] Requisições passam exclusivamente pelo módulo `openMeteo.ts`
+- [x] Layout responsivo: sidebar empilha em mobile
+- [x] Fundo escuro, card branco arredondado, max-width 800px
+- [x] Empty state presente no carregamento inicial
 
 ---
 
